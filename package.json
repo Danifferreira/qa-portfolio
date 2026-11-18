@@ -7,7 +7,7 @@
     "test:api": "playwright test --project=api",
     "test:e2e": "playwright test --project=e2e",
     "site:build": "node scripts/build-site.mjs",
-    "site:test": "node --test scripts/"
+    "site:test": "node --test scripts/build-site.test.mjs"
   },
   "license": "MIT",
   "type": "commonjs",
