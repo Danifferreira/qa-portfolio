@@ -1,0 +1,91 @@
+name: Daily QA
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # 06:00 in Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    outputs:
+      tests_failed: ${{ steps.result.outputs.failed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Check that the demo site is up
+        id: health
+        run: |
+          if curl -sf --retry 3 --retry-delay 10 -m 20 "https://api.practicesoftwaretesting.com/products?page=1" > /dev/null \
+            && curl -sf --retry 3 --retry-delay 10 -m 20 "https://practicesoftwaretesting.com/" > /dev/null; then
+            echo "up=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "up=false" >> "$GITHUB_OUTPUT"
+            echo "### Environment unavailable. The demo site did not respond, so the suite did not run." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Run the suite
+        id: tests
+        if: steps.health.outputs.up == 'true'
+        continue-on-error: true
+        run: npx playwright test
+
+      - name: Build the status page
+        if: always()
+        run: |
+          if [ "${{ steps.health.outputs.up }}" = "true" ]; then
+            node scripts/build-site.mjs --status up --results test-results/results.json --out site
+            if [ -d playwright-report ]; then cp -r playwright-report site/report; fi
+          else
+            node scripts/build-site.mjs --status down --out site
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: site
+
+      - name: Record the result
+        id: result
+        if: always()
+        run: echo "failed=${{ steps.tests.outcome == 'failure' }}" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  verdict:
+    needs: [test, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail the run when tests failed
+        if: needs.test.outputs.tests_failed == 'true'
+        run: |
+          echo "Tests failed. The status page and report were published so the failure is visible."
+          exit 1
