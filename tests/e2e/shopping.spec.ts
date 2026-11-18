@@ -7,10 +7,21 @@ test.describe('Shopping', () => {
     const term = product.name.split(' ')[0];
 
     await page.goto('/');
+    await expect(page.getByTestId('search-caption')).toHaveCount(0);
+
     await page.getByTestId('search-query').fill(term);
     await page.getByTestId('search-submit').click();
 
-    await expect(page.getByTestId('product-name').filter({ hasText: product.name }).first()).toBeVisible();
+    await expect(page.getByTestId('search-caption')).toContainText(term);
+
+    const apiResults = await (await new ApiClient(request).get(`/products/search?q=${encodeURIComponent(term)}`)).json();
+    const expected = apiResults.data.map((item: { name: string }) => item.name).sort();
+    expect(expected).toContain(product.name);
+
+    const names = page.getByTestId('product-name');
+    await expect
+      .poll(async () => (await names.allTextContents()).map((name) => name.trim()).sort())
+      .toEqual(expected.slice(0, 9));
   });
 
   test('@smoke customer adds a product to the cart', async ({ page, request }) => {
