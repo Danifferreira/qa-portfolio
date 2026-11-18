@@ -1,0 +1,20 @@
+{
+  "name": "qa-portfolio",
+  "version": "1.0.0",
+  "description": "QA portfolio: test strategy, QA docs and a Playwright suite for a public demo shop",
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test --project=api",
+    "test:e2e": "playwright test --project=e2e",
+    "site:build": "node scripts/build-site.mjs",
+    "site:test": "node --test scripts/"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
