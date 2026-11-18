@@ -39,8 +39,18 @@ jobs:
       - name: Check that the demo site is up
         id: health
         run: |
-          if curl -sf --retry 3 --retry-delay 10 -m 20 "https://api.practicesoftwaretesting.com/products?page=1" > /dev/null \
-            && curl -sf --retry 3 --retry-delay 10 -m 20 "https://practicesoftwaretesting.com/" > /dev/null; then
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
+          check() {
+            for attempt in 1 2 3; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A "$UA" -H "Accept: $2" "$1" || echo 000)
+              echo "$1 -> HTTP $code (attempt $attempt)"
+              [ "$code" = "200" ] && return 0
+              sleep 10
+            done
+            return 1
+          }
+          if check "https://api.practicesoftwaretesting.com/products?page=1" "application/json" \
+            && check "https://practicesoftwaretesting.com/" "text/html"; then
             echo "up=true" >> "$GITHUB_OUTPUT"
           else
             echo "up=false" >> "$GITHUB_OUTPUT"
