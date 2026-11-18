@@ -51,12 +51,18 @@ jobs:
       - name: Build the status page
         if: always()
         run: |
-          if [ "${{ steps.health.outputs.up }}" = "true" ]; then
-            node scripts/build-site.mjs --status up --results test-results/results.json --out site
-            if [ -d playwright-report ]; then cp -r playwright-report site/report; fi
-          else
-            node scripts/build-site.mjs --status down --out site
-          fi
+          case "${{ steps.health.outputs.up }}" in
+            true)
+              node scripts/build-site.mjs --status up --results test-results/results.json --out site
+              if [ -d playwright-report ]; then cp -r playwright-report site/report; fi
+              ;;
+            false)
+              node scripts/build-site.mjs --status down --out site
+              ;;
+            *)
+              node scripts/build-site.mjs --status incomplete --out site
+              ;;
+          esac
 
       - uses: actions/upload-pages-artifact@v3
         if: always()

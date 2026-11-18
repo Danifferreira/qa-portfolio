@@ -15,6 +15,9 @@ function summary(status, stats) {
   if (status === 'down') {
     return '<p class="down">Environment unavailable. The demo site did not respond, so the suite did not run today.</p>';
   }
+  if (status === 'incomplete') {
+    return '<p class="warn">Run did not complete because of a problem in the pipeline itself, not in the demo site. See the run in GitHub Actions.</p>';
+  }
   if (!stats) return '<p class="warn">No results found for this run.</p>';
 
   const failed = stats.unexpected ?? 0;
@@ -55,7 +58,7 @@ function arg(name) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   buildSite({
-    status: arg('status') === 'down' ? 'down' : 'up',
+    status: ['down', 'incomplete'].includes(arg('status')) ? arg('status') : 'up',
     resultsPath: arg('results'),
     outDir: arg('out') ?? 'site',
     runDate: new Date().toISOString().slice(0, 10),

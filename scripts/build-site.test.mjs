@@ -28,6 +28,12 @@ test('up status shows totals and the report link', () => {
   assert.match(html, /report\/index\.html/);
 });
 
+test('incomplete status says the run did not finish and does not blame the site', () => {
+  const html = render({ status: 'incomplete' });
+  assert.match(html, /Run did not complete/);
+  assert.doesNotMatch(html, /Environment unavailable/);
+});
+
 test('up status with a missing results file says no results found', () => {
   const html = render({ status: 'up', resultsPath: join(tmpdir(), 'does-not-exist.json') });
   assert.match(html, /No results found/);
