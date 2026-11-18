@@ -23,8 +23,13 @@ export class ApiClient {
     const response = await this.request.fetch(`${API_URL}${path}`, options);
     if (response.status() !== 429) return response;
 
-    await new Promise((resolve) => setTimeout(resolve, this.retryDelayMs));
+    await new Promise((resolve) => setTimeout(resolve, this.waitBeforeRetry(response)));
     return this.request.fetch(`${API_URL}${path}`, options);
+  }
+
+  private waitBeforeRetry(response: APIResponse): number {
+    const retryAfter = Number(response.headers()['retry-after']);
+    return Number.isFinite(retryAfter) && retryAfter >= 0 ? retryAfter * 1_000 : this.retryDelayMs;
   }
 
   get(path: string, token?: string): Promise<APIResponse> {
@@ -53,8 +58,14 @@ export class ApiClient {
 }
 
 export async function pickAnyInStockProduct(client: ApiClient): Promise<{ id: string; name: string; price: number }> {
-  const body = await (await client.get('/products?page=1')).json();
-  const products: Array<{ id: string; name: string; price: number; in_stock?: boolean }> = body.data;
+  const response = await client.get('/products?page=1');
+  if (response.status() !== 200) {
+    throw new Error(`Could not load products: HTTP ${response.status()}`);
+  }
+  const products: Array<{ id: string; name: string; price: number; in_stock?: boolean }> = (await response.json()).data ?? [];
+  if (products.length === 0) {
+    throw new Error('The catalog returned no products');
+  }
   const product = products.find((item) => item.in_stock !== false) ?? products[0];
   return { id: product.id, name: product.name, price: product.price };
 }

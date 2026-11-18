@@ -24,7 +24,7 @@ test.describe('Shopping', () => {
       .toEqual(expected.slice(0, 9));
   });
 
-  test('@smoke customer adds a product to the cart', async ({ page, request }) => {
+  test('@smoke visitor adds a product to the cart', async ({ page, request }) => {
     const product = await pickAnyInStockProduct(new ApiClient(request));
 
     await page.goto(`/product/${product.id}`);

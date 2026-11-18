@@ -18,6 +18,7 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
   projects: [
+    { name: 'unit', testDir: 'tests/unit' },
     { name: 'api', testDir: 'tests/api' },
     {
       name: 'e2e',

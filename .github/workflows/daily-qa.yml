@@ -31,6 +31,11 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
+      - name: Check the status page builder and types
+        run: |
+          npm run -s site:test
+          npx tsc --noEmit
+
       - name: Check that the demo site is up
         id: health
         run: |

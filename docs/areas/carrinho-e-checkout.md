@@ -53,8 +53,8 @@ Feature: Cart and checkout
 
 | Nível | Item | Teste automatizado |
 |---|---|---|
-| Smoke | Carrinho é criado e o produto entra com quantidade 1 (API) | [`cart.spec.ts`](../../tests/api/cart.spec.ts) › @smoke customer can create a cart and add a product |
-| Smoke | Visitante adiciona um produto ao carrinho pela tela | [`shopping.spec.ts`](../../tests/e2e/shopping.spec.ts) › @smoke customer adds a product to the cart |
+| Smoke | Carrinho é criado e o produto entra com quantidade 1 (API) | [`cart.spec.ts`](../../tests/api/cart.spec.ts) › @smoke visitor can create a cart and add a product |
+| Smoke | Visitante adiciona um produto ao carrinho pela tela | [`shopping.spec.ts`](../../tests/e2e/shopping.spec.ts) › @smoke visitor adds a product to the cart |
 | Regressão | Quantidades 0 e 100 são recusadas com a mensagem certa | manual |
 | Regressão | Checkout completo chega ao pagamento com um cliente logado | manual |
 | Regressão | Carrinho vazio no checkout explica o que fazer. Ver [bug](../bugs/checkout-carrinho-vazio-sem-mensagem.md) | manual |

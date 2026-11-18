@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ApiClient, pickAnyInStockProduct } from '../support/api-client';
 
 test.describe('Cart API', () => {
-  test('@smoke customer can create a cart and add a product', async ({ request }) => {
+  test('@smoke visitor can create a cart and add a product', async ({ request }) => {
     const api = new ApiClient(request);
     const product = await pickAnyInStockProduct(api);
 
