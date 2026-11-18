@@ -1,5 +1,7 @@
 # Test case standard (BDD)
 
+[Versão em português](../../padroes/casos-de-teste-bdd.md)
+
 I write test cases in Gherkin so that product, developers and QA read the same thing. They live in the area doc they belong to, not in a separate tool.
 
 ## Shape

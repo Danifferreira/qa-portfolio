@@ -1,5 +1,7 @@
 # Authentication
 
+[Versão em português](../../areas/autenticacao.md)
+
 Sign up and log in for customers. Priority **Medium** in the [risk map](../strategy/risk-map.md).
 
 ## Rules observed
@@ -36,9 +38,9 @@ Feature: Customer authentication
       Then the registration is refused with a message about "<rule>"
 
       Examples:
-        | password  | rule                 |
-        | abc       | at least 8 characters |
-        | abcdefgh1! | uppercase letter     |
+        | password   | rule                  |
+        | abc        | at least 8 characters |
+        | abcdefgh1! | uppercase letter      |
 
   Rule: Login does not reveal which field is wrong
 

@@ -1,5 +1,7 @@
 # Product catalog
 
+[Versão em português](../../areas/catalogo-de-produtos.md)
+
 Browsing, filtering and searching products. Priority **Medium** in the [risk map](../strategy/risk-map.md).
 
 ## Rules observed
@@ -32,7 +34,8 @@ Feature: Product catalog
     Scenario: Search by a word from a product name
       Given a product that exists in the catalog
       When a visitor searches for the first word of its name
-      Then that product appears in the results
+      Then the results show only the products that match the term
+      And that product is among them
 
     @regression
     Scenario: Search with no match
@@ -52,7 +55,7 @@ Feature: Product catalog
 | Level | Item | Automated test |
 |---|---|---|
 | Smoke | Product list returns paginated data with name and price | [`catalog.spec.ts`](../../../tests/api/catalog.spec.ts) › @smoke product list returns paginated data |
-| Smoke | Search finds a product from the catalog | [`shopping.spec.ts`](../../../tests/e2e/shopping.spec.ts) › @smoke search finds a product from the catalog |
+| Smoke | Search filters the list and finds a product from the catalog | [`shopping.spec.ts`](../../../tests/e2e/shopping.spec.ts) › @smoke search finds a product from the catalog |
 | Regression | Search with no match shows an empty result | manual |
 | Regression | Category, brand and price filters narrow the list | manual |
 | Regression | Sort by price is correct in both directions | manual |

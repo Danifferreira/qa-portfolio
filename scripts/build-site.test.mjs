@@ -17,6 +17,12 @@ test('down status shows environment unavailable and no report link', () => {
   assert.doesNotMatch(html, /report\/index\.html/);
 });
 
+test('the page also speaks Portuguese', () => {
+  const html = render({ status: 'down' });
+  assert.match(html, /Ambiente indisponível/);
+  assert.match(html, /lang="pt-BR"/);
+});
+
 test('up status shows totals and the report link', () => {
   const dir = mkdtempSync(join(tmpdir(), 'results-'));
   const resultsPath = join(dir, 'results.json');

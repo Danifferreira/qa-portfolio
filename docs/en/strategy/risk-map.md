@@ -1,5 +1,7 @@
 # Risk map
 
+[Versão em português](../../estrategia/mapa-de-riscos.md)
+
 I score each area by impact (what happens to the customer or the business if it breaks) and probability (how likely it is to break, based on complexity, change rate and what I saw while exploring). The priority decides how much testing each area gets.
 
 | Area | Impact | Probability | Priority | Why |
@@ -13,7 +15,7 @@ I score each area by impact (what happens to the customer or the business if it 
 
 | Priority | What it gets |
 |---|---|
-| High | BDD cases for every rule, automated API checks, at least one UI smoke, exploratory session every release |
+| High | BDD cases for every rule, automated checks at the level where the rule lives (API or UI), exploratory session every release |
 | Medium | BDD cases for the main rules, automated smoke, exploratory session when the area changes |
 | Low | Exploratory session when the area changes, regression row only |
 

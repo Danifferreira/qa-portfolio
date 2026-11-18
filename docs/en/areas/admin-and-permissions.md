@@ -1,5 +1,7 @@
 # Admin and permissions
 
+[Versão em português](../../areas/admin-e-permissoes.md)
+
 The boundary between what a customer and an admin can do. Priority **High** in the [risk map](../strategy/risk-map.md).
 
 ## Rules observed
@@ -14,7 +16,9 @@ A customer reading other customers' data or changing the catalog would be a priv
 
 ## How I test permissions
 
-For every admin action I check three callers. No token, a customer token, and an admin token. The first two must be refused, and I always confirm afterwards that nothing changed, because an API can answer 403 and still apply the change.
+For every admin action, the ideal is to check three callers, with no token, with a customer token and with an admin token. The first two must be refused, and I confirm afterwards that nothing changed, because an API can answer 403 and still apply the change.
+
+In this portfolio, automation covers the refused cases. The positive case (the admin can do it) stays as a manual regression row, because the demo's admin account is shared by everyone who practices on it, and an automated test should not depend on it or change its data.
 
 ## Test cases
 
@@ -51,5 +55,7 @@ Feature: Permissions
 | Smoke | Anonymous user cannot list users | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › anonymous user cannot list users |
 | Smoke | Customer cannot list users | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › customer cannot list users |
 | Smoke | Customer cannot delete a product, and the product stays | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › customer cannot delete a product |
+| Regression | Admin can delete a product (positive case) | manual |
+| Regression | Anonymous user cannot delete a product | manual |
 | Regression | Customer cannot read another customer's invoices | manual |
 | Regression | Customer cannot change another customer's profile | manual |

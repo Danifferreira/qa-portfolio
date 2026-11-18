@@ -1,5 +1,7 @@
 # [Checkout] empty cart shows the checkout steps with no message
 
+[Versão em português](../../bugs/checkout-carrinho-vazio-sem-mensagem.md)
+
 A visitor who opens the checkout with an empty cart sees the four step indicators and nothing else. There is no message and no link back to the shop, so the page looks broken.
 
 **Environment.** https://practicesoftwaretesting.com, Chrome, app footer v2.5, November 2026.
@@ -15,4 +17,6 @@ A visitor who opens the checkout with an empty cart sees the four step indicator
 
 **Severity.** Low. No data or money is affected, but the visitor is left on a dead end.
 
-**QA suggestion** (to be confirmed with product, there may be a better solution). Show an empty cart message with a "Continue shopping" button, or redirect to the cart page.
+**Evidence.** Screenshot of `/checkout` with an empty cart, showing only the step bar.
+
+**Suggestion** (not a decision, product may prefer another fix). Show an empty cart message with a "Continue shopping" button, or redirect to the cart page.

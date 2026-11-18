@@ -1,6 +1,7 @@
 # QA Portfolio — Danielle Ferreira
 
-> **Resumo em português.** Este repositório mostra como eu estruturo o QA de um produto do zero, usando uma loja de demonstração pública como se fosse o produto do meu time. Aqui estão os padrões, a estratégia de testes, o mapa de riscos, a documentação por área, um relatório de release, bugs reais que encontrei e uma suíte de testes automatizados que roda todos os dias.
+[Versão em português](README.md)
+
 
 I am a Senior QA Engineer with more than 6 years in software quality. What I enjoy most is organizing quality for a product and leaving a process the team can follow without depending on me. [LinkedIn](https://www.linkedin.com/in/danielle-ferreira-qa)
 
@@ -25,6 +26,8 @@ The suite runs every morning on GitHub Actions. Before it starts, a health check
 
 **[See today's status and full report](https://danifferreira.github.io/qa-portfolio/)**
 
+GitHub pauses scheduled workflows in repositories with no activity for 60 days. The page shows the date of the last run, so it is clear when that happens.
+
 ## Run it locally
 
 ```bash
@@ -33,7 +36,7 @@ npx playwright install chromium
 npm test
 ```
 
-Every test creates its own customer, so runs never depend on data other visitors can change.
+Tests that need an account register a new customer on every run. Tests that need a product pick one from the live catalog at run time, never by a fixed name or price.
 
 ## Coming next
 
@@ -41,4 +44,4 @@ An AI-assisted QA section, with a skill that turns a user story into BDD cases a
 
 ---
 
-Structured and reviewed by me, with AI assistance from Claude Code.
+Structured and reviewed by me, with AI assistance (Claude Code).

@@ -1,5 +1,7 @@
 # Bug report standard
 
+[Versão em português](../../padroes/relato-de-bug.md)
+
 One bug per report. A report should let a developer reproduce the problem without asking me anything.
 
 ## Title
@@ -19,8 +21,8 @@ Example: `[Checkout] empty cart shows the checkout steps with no message`
 | Actual result | What happens, with exact messages and status codes |
 | Expected result | What should happen, based on a rule or a reasonable user expectation |
 | Severity | Critical, High, Medium or Low (see below) |
-| Evidence | Screenshot, video or response body |
-| QA suggestion | Optional. Clearly marked as a suggestion, because product may have a better solution |
+| Evidence | Screenshot, video or response body, when there is one |
+| Suggestion | Optional. Clearly marked as a suggestion and not a decision, because product may prefer another fix |
 
 ## Severity
 

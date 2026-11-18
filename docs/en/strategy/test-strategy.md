@@ -1,6 +1,8 @@
 # Test strategy
 
-This is how I would run QA for the tool shop if it were my team's product. The goal is simple: no release breaks buying, and no customer can see or change what is not theirs.
+[Versão em português](../../estrategia/estrategia-de-testes.md)
+
+This is how I would run QA for the tool shop if it were my team's product. The goal is simple. No release breaks buying, and no customer can see or change what is not theirs.
 
 ## Scope
 
@@ -10,7 +12,7 @@ Out of scope for now are the admin back office screens, invoice PDFs, payment pr
 
 ## Where effort goes
 
-The [risk map](risk-map.md) decides it. High impact and high probability areas get BDD cases, automation and a smoke row. Low risk areas get exploratory sessions and a regression row only.
+The [risk map](risk-map.md) decides it. High priority areas get BDD cases, automation and smoke rows. Lower priority areas get exploratory sessions and regression rows.
 
 ## Test levels
 
@@ -27,7 +29,7 @@ I automate checks that run often, are stable, and protect money, data or access.
 
 I do not automate flows that change every sprint, visual details, or anything that needs a human judgment call. Those stay as manual or exploratory rows, and I revisit the decision every quarter.
 
-A small suite I trust is worth more than a large one people learn to ignore. Every automated test here creates its own data and never depends on data other people can change, so a red result always means something.
+A small suite I trust is worth more than a large one people learn to ignore. Tests that need an account register a new customer on every run. Tests that need a product pick one from the live catalog at run time, never by a fixed name or price. That way a red result always means something.
 
 ## Environments
 

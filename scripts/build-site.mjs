@@ -11,19 +11,31 @@ function readStats(resultsPath) {
   }
 }
 
+function pt(text) {
+  return `<p lang="pt-BR" class="pt">${text}</p>`;
+}
+
 function summary(status, stats) {
   if (status === 'down') {
-    return '<p class="down">Environment unavailable. The demo site did not respond, so the suite did not run today.</p>';
+    return `<p class="down">Environment unavailable. The demo site did not respond, so the suite did not run today.</p>
+${pt('Ambiente indisponível. O site de demonstração não respondeu, então a suíte não rodou hoje.')}`;
   }
   if (status === 'incomplete') {
-    return '<p class="warn">Run did not complete because of a problem in the pipeline itself, not in the demo site. See the run in GitHub Actions.</p>';
+    return `<p class="warn">Run did not complete because of a problem in the pipeline itself, not in the demo site. See the run in GitHub Actions.</p>
+${pt('A execução não terminou por um problema na própria rotina, e não no site de demonstração. Veja a execução no GitHub Actions.')}`;
   }
-  if (!stats) return '<p class="warn">No results found for this run.</p>';
+  if (!stats) {
+    return `<p class="warn">No results found for this run.</p>
+${pt('Nenhum resultado encontrado para esta execução.')}`;
+  }
 
   const failed = stats.unexpected ?? 0;
-  const line = `${stats.expected ?? 0} passed · ${failed} failed · ${stats.flaky ?? 0} flaky · ${stats.skipped ?? 0} skipped`;
-  return `<p class="${failed > 0 ? 'fail' : 'pass'}">${line}</p>
-<p><a href="report/index.html">Open the full Playwright report</a></p>`;
+  const passed = stats.expected ?? 0;
+  const flaky = stats.flaky ?? 0;
+  const skipped = stats.skipped ?? 0;
+  return `<p class="${failed > 0 ? 'fail' : 'pass'}">${passed} passed · ${failed} failed · ${flaky} flaky · ${skipped} skipped</p>
+${pt(`${passed} passaram · ${failed} falharam · ${flaky} instáveis · ${skipped} pulados`)}
+<p><a href="report/index.html">Open the full Playwright report</a> · <span lang="pt-BR">Abrir o relatório completo</span></p>`;
 }
 
 export function buildSite({ status, resultsPath, outDir, runDate }) {
@@ -38,6 +50,7 @@ export function buildSite({ status, resultsPath, outDir, runDate }) {
   body { font-family: system-ui, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 16px; color: #1f2328; }
   .pass { color: #1a7f37; } .fail { color: #cf222e; } .down, .warn { color: #9a6700; }
   a { color: #0969da; }
+  .pt { color: #59636e; margin-top: -8px; }
 </style>
 </head>
 <body>

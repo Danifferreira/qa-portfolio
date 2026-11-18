@@ -1,5 +1,7 @@
 # Bugs found
 
+[Versão em português](../../bugs/README.md)
+
 Real defects I found while exploring the demo shop, written in the [bug standard](../standards/bug-report.md). Bugs that belong to an area are also linked from the What to validate table of that area, so they stay covered after they are fixed.
 
 | Bug | Area | Severity |

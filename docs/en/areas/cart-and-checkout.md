@@ -1,5 +1,7 @@
 # Cart and checkout
 
+[Versão em português](../../areas/carrinho-e-checkout.md)
+
 Adding products to the cart and going through checkout. Priority **High** in the [risk map](../strategy/risk-map.md).
 
 ## Rules observed

@@ -1,5 +1,7 @@
 # [API] validation errors come back as an HTML redirect when the client does not ask for JSON
 
+[Versão em português](../../bugs/api-erro-de-validacao-redireciona.md)
+
 When a request fails validation and does not send `Accept: application/json`, the API answers `302` with an HTML page that redirects, instead of `422` with the JSON error. A client that does not set that header cannot tell what went wrong.
 
 **Environment.** https://api.practicesoftwaretesting.com, curl, November 2026.
@@ -16,4 +18,6 @@ When a request fails validation and does not send `Accept: application/json`, th
 
 **Severity.** Medium. The rule is enforced, but the API contract changes depending on a header, which breaks clients and hides validation errors.
 
-**QA suggestion** (to be confirmed with product, there may be a better solution). Always answer JSON for routes under the API, regardless of the `Accept` header.
+**Evidence.** Status and body of both responses, recorded above.
+
+**Suggestion** (not a decision, product may prefer another fix). Always answer JSON for routes under the API, regardless of the `Accept` header.

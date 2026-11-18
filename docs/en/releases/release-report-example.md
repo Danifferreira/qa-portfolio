@@ -1,10 +1,12 @@
 # Release report (example)
 
+[Versão em português](../../releases/relatorio-de-release-exemplo.md)
+
 This is a fictional release of the tool shop, written the way I write real ones. The goal of the report is to let product decide in five minutes, with no surprises after go-live.
 
 ## Release 2.6 — cart quantity limits and checkout improvements
 
-**Recommendation. Go**, with one accepted risk listed below.
+**I recommend going ahead with the release**, with one accepted risk listed below.
 
 ## What changed
 

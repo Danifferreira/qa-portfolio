@@ -1,5 +1,7 @@
 # How this QA base is organized
 
+[Versão em português](../como-esta-base-e-organizada.md)
+
 I organize QA documentation so that anyone on the team can find an answer in under a minute and nobody has to keep two copies of the same rule in sync.
 
 ## The rules I follow
