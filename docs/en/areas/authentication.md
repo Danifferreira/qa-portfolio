@@ -53,8 +53,8 @@ Feature: Customer authentication
 
 | Level | Item | Automated test |
 |---|---|---|
-| Smoke | Customer can register and log in (API) | [`users.spec.ts`](../../tests/api/users.spec.ts) › @smoke customer can register and log in |
-| Smoke | Customer logs in through the UI | [`auth.spec.ts`](../../tests/e2e/auth.spec.ts) › @smoke customer logs in through the UI |
-| Regression | Wrong password is rejected | [`users.spec.ts`](../../tests/api/users.spec.ts) › wrong password is rejected |
+| Smoke | Customer can register and log in (API) | [`users.spec.ts`](../../../tests/api/users.spec.ts) › @smoke customer can register and log in |
+| Smoke | Customer logs in through the UI | [`auth.spec.ts`](../../../tests/e2e/auth.spec.ts) › @smoke customer logs in through the UI |
+| Regression | Wrong password is rejected | [`users.spec.ts`](../../../tests/api/users.spec.ts) › wrong password is rejected |
 | Regression | Weak passwords are refused with one message per rule | manual |
 | Regression | Forgot password sends a reset and the old password stops working | manual |

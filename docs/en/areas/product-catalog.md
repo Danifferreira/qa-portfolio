@@ -51,8 +51,8 @@ Feature: Product catalog
 
 | Level | Item | Automated test |
 |---|---|---|
-| Smoke | Product list returns paginated data with name and price | [`catalog.spec.ts`](../../tests/api/catalog.spec.ts) › @smoke product list returns paginated data |
-| Smoke | Search finds a product from the catalog | [`shopping.spec.ts`](../../tests/e2e/shopping.spec.ts) › @smoke search finds a product from the catalog |
+| Smoke | Product list returns paginated data with name and price | [`catalog.spec.ts`](../../../tests/api/catalog.spec.ts) › @smoke product list returns paginated data |
+| Smoke | Search finds a product from the catalog | [`shopping.spec.ts`](../../../tests/e2e/shopping.spec.ts) › @smoke search finds a product from the catalog |
 | Regression | Search with no match shows an empty result | manual |
 | Regression | Category, brand and price filters narrow the list | manual |
 | Regression | Sort by price is correct in both directions | manual |

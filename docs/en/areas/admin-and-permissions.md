@@ -48,8 +48,8 @@ Feature: Permissions
 
 | Level | Item | Automated test |
 |---|---|---|
-| Smoke | Anonymous user cannot list users | [`permissions.spec.ts`](../../tests/api/permissions.spec.ts) › anonymous user cannot list users |
-| Smoke | Customer cannot list users | [`permissions.spec.ts`](../../tests/api/permissions.spec.ts) › customer cannot list users |
-| Smoke | Customer cannot delete a product, and the product stays | [`permissions.spec.ts`](../../tests/api/permissions.spec.ts) › customer cannot delete a product |
+| Smoke | Anonymous user cannot list users | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › anonymous user cannot list users |
+| Smoke | Customer cannot list users | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › customer cannot list users |
+| Smoke | Customer cannot delete a product, and the product stays | [`permissions.spec.ts`](../../../tests/api/permissions.spec.ts) › customer cannot delete a product |
 | Regression | Customer cannot read another customer's invoices | manual |
 | Regression | Customer cannot change another customer's profile | manual |

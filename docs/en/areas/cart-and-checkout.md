@@ -51,8 +51,8 @@ Feature: Cart and checkout
 
 | Level | Item | Automated test |
 |---|---|---|
-| Smoke | Cart is created and a product is added with quantity 1 (API) | [`cart.spec.ts`](../../tests/api/cart.spec.ts) › @smoke customer can create a cart and add a product |
-| Smoke | Customer adds a product to the cart in the UI | [`shopping.spec.ts`](../../tests/e2e/shopping.spec.ts) › @smoke customer adds a product to the cart |
+| Smoke | Cart is created and a product is added with quantity 1 (API) | [`cart.spec.ts`](../../../tests/api/cart.spec.ts) › @smoke customer can create a cart and add a product |
+| Smoke | Customer adds a product to the cart in the UI | [`shopping.spec.ts`](../../../tests/e2e/shopping.spec.ts) › @smoke customer adds a product to the cart |
 | Regression | Quantities 0 and 100 are refused with the right message | manual |
 | Regression | Full checkout reaches the payment step with a logged in customer | manual |
 | Regression | Empty cart at checkout explains what to do. See [bug](../bugs/checkout-empty-cart-no-message.md) | manual |
