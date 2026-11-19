@@ -35,6 +35,8 @@ A small suite I trust is worth more than a large one people learn to ignore. Tes
 
 Tests run against the public demo. Before each daily run, a health check confirms the site is up. If it is not, the run is reported as "Environment unavailable" instead of failing, because a broken environment is not a broken product.
 
+The daily run on GitHub runs the API tests. The UI tests run locally, because the shop protects some pages with Cloudflare's bot check when traffic comes from servers, and working around that protection is not an option. The next step is for the workflow to start its own copy of the shop and run everything there.
+
 ## Entry and exit criteria
 
 A change enters QA when it has acceptance criteria, is deployed to a test environment, and the developer has noted anything risky.

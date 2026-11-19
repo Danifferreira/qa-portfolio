@@ -22,7 +22,9 @@ I took [Practice Software Testing](https://practicesoftwaretesting.com), a publi
 
 ## Daily run
 
-The suite runs every morning on GitHub Actions. Before it starts, a health check confirms the demo site is up. If it is not, the run is reported as "Environment unavailable" instead of failing.
+The API tests run every morning on GitHub Actions. Before they start, a health check confirms the demo site is up. If it is not, the run is reported as "Environment unavailable" instead of failing.
+
+The UI tests run locally. The demo shop protects some pages with Cloudflare's bot check when traffic comes from servers like GitHub's, and I do not work around that kind of protection. The next step is for the workflow to start its own copy of the shop and test everything there.
 
 **[See today's status and full report](https://danifferreira.github.io/qa-portfolio/)**
 

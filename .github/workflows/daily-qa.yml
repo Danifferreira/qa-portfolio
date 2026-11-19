@@ -61,7 +61,7 @@ jobs:
         id: tests
         if: steps.health.outputs.up == 'true'
         continue-on-error: true
-        run: npx playwright test
+        run: npx playwright test --project=unit --project=api
 
       - name: Build the status page
         if: always()

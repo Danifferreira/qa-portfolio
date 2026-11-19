@@ -21,7 +21,9 @@ Peguei o [Practice Software Testing](https://practicesoftwaretesting.com), uma l
 
 ## Execução diária
 
-A suíte roda toda manhã no GitHub Actions. Antes de começar, uma checagem confirma se o site de demonstração está no ar. Se não estiver, a execução aparece como "Environment unavailable" em vez de falha.
+Os testes de API rodam toda manhã no GitHub Actions. Antes de começar, uma checagem confirma se o site de demonstração está no ar. Se não estiver, a execução aparece como "Environment unavailable" em vez de falha.
+
+Os testes de tela rodam localmente. A loja de demonstração protege algumas páginas com a verificação anti-robô do Cloudflare quando o acesso vem de servidores como os do GitHub, e eu não contorno esse tipo de proteção. O próximo passo é a rotina subir uma cópia própria da loja e testar tudo nela.
 
 **[Ver o status de hoje e o relatório completo](https://danifferreira.github.io/qa-portfolio/)**
 

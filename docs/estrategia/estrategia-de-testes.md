@@ -35,6 +35,8 @@ Uma suíte pequena em que eu confio vale mais que uma grande que o time aprende 
 
 Os testes rodam contra a demonstração pública. Antes de cada execução diária, uma checagem confirma se o site está no ar. Se não estiver, a execução aparece como "Environment unavailable" em vez de falha, porque ambiente fora do ar não é produto quebrado.
 
+A execução diária no GitHub roda os testes de API. Os testes de tela rodam localmente, porque a loja protege algumas páginas com a verificação anti-robô do Cloudflare quando o acesso vem de servidores, e contornar essa proteção não é uma opção. O próximo passo é a rotina subir uma cópia própria da loja e rodar tudo nela.
+
 ## Critérios de entrada e saída
 
 Uma mudança entra em QA quando tem critérios de aceite, está publicada num ambiente de teste e o dev registrou o que ela tem de arriscado.
