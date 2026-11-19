@@ -2,91 +2,92 @@
 
 [English version](2-ai-output.en.md)
 
-Esta é a saída da skill para a [história do cupom](1-historia.md), exatamente como foi gerada, sem retoque. A minha revisão está em [3-minha-revisao.md](3-minha-revisao.md). O Gherkin fica em inglês, como no padrão do repositório.
+Esta é a saída da skill para a [história do cupom](1-historia.md), sem retoque no conteúdo. A IA gerou o Gherkin em inglês, seguindo o padrão do repositório. Aqui ele está traduzido para português, para o exemplo ficar inteiro num idioma só. O original está na versão em inglês. A minha revisão está em [3-minha-revisao.md](3-minha-revisao.md).
 
 ## Gherkin
 
 ```gherkin
-Feature: Discount coupon at checkout
+# language: pt
+Funcionalidade: Cupom de desconto no checkout
 
-  Background:
-    Given a logged in customer with products in the cart
-    And the customer is on the payment step of the checkout
+  Contexto:
+    Dado um cliente logado com produtos no carrinho
+    E o cliente está na etapa de pagamento do checkout
 
-  Rule: The customer can type a coupon at the payment step and apply it
-
-    @smoke @critical
-    Scenario: Apply a valid coupon
-      Given a valid coupon "SAVE10" worth 10% off
-      When the customer applies the coupon "SAVE10"
-      Then the coupon is accepted
-
-  Rule: A valid coupon shows the discount and the new total before the purchase is completed
+  Regra: O cliente pode digitar um cupom na etapa de pagamento e aplicar
 
     @smoke @critical
-    Scenario: Discount and new total are shown before paying
-      Given the cart total is 100.00
-      And a valid coupon "SAVE10" worth 10% off
-      When the customer applies the coupon "SAVE10"
-      Then the discount shown is 10.00
-      And the new total shown is 90.00
-      And the purchase is not completed yet
+    Cenário: Aplicar um cupom válido
+      Dado um cupom válido "SAVE10" de 10% de desconto
+      Quando o cliente aplica o cupom "SAVE10"
+      Então o cupom é aceito
+
+  Regra: Um cupom válido mostra o desconto e o novo total antes de finalizar a compra
+
+    @smoke @critical
+    Cenário: Desconto e novo total aparecem antes de pagar
+      Dado que o total do carrinho é 100,00
+      E um cupom válido "SAVE10" de 10% de desconto
+      Quando o cliente aplica o cupom "SAVE10"
+      Então o desconto mostrado é 10,00
+      E o novo total mostrado é 90,00
+      E a compra ainda não foi finalizada
 
     @regression
-    Scenario Outline: Fixed and percentage coupons
-      Given the cart total is <cart_total>
-      And a valid coupon "<code>" worth <value>
-      When the customer applies the coupon "<code>"
-      Then the new total shown is <new_total>
+    Esquema do Cenário: Cupons de valor fixo e de porcentagem
+      Dado que o total do carrinho é <total_do_carrinho>
+      E um cupom válido "<codigo>" de <valor>
+      Quando o cliente aplica o cupom "<codigo>"
+      Então o novo total mostrado é <novo_total>
 
-      Examples:
-        | cart_total | code    | value     | new_total |
-        | 100.00     | SAVE10  | 10% off   | 90.00     |
-        | 100.00     | MINUS15 | 15.00 off | 85.00     |
-        | 59.99      | SAVE10  | 10% off   | 53.99     |
+      Exemplos:
+        | total_do_carrinho | codigo  | valor            | novo_total |
+        | 100,00            | SAVE10  | 10% de desconto  | 90,00      |
+        | 100,00            | MINUS15 | 15,00 de desconto | 85,00     |
+        | 59,99             | SAVE10  | 10% de desconto  | 53,99      |
 
-  Rule: An invalid or expired coupon shows an error message and does not change the total
+  Regra: Um cupom inválido ou expirado mostra uma mensagem de erro e não altera o total
 
     @regression
-    Scenario Outline: Coupon that cannot be used
-      Given the cart total is 100.00
-      When the customer applies the coupon "<code>"
-      Then an error message says the coupon <reason>
-      And the total stays 100.00
+    Esquema do Cenário: Cupom que não pode ser usado
+      Dado que o total do carrinho é 100,00
+      Quando o cliente aplica o cupom "<codigo>"
+      Então uma mensagem de erro diz que o cupom <motivo>
+      E o total continua 100,00
 
-      Examples:
-        | code      | reason          |
-        | NOTREAL   | is invalid      |
-        | OLDSALE   | has expired     |
-        |           | is required     |
+      Exemplos:
+        | codigo  | motivo         |
+        | NOTREAL | é inválido     |
+        | OLDSALE | expirou        |
+        |         | é obrigatório  |
 
-  Rule: Only one coupon can be used per order
-
-    @regression @critical
-    Scenario: Second coupon replaces or is refused
-      Given the coupon "SAVE10" is applied
-      When the customer applies the coupon "MINUS15"
-      Then only one coupon is applied to the order
-
-  Rule: Percentage coupons cannot bring the total below zero
+  Regra: Só um cupom pode ser usado por pedido
 
     @regression @critical
-    Scenario: Total never goes below zero
-      Given the cart total is 5.00
-      And a valid coupon "FULL" worth 100% off
-      When the customer applies the coupon "FULL"
-      Then the new total shown is 0.00
+    Cenário: Segundo cupom substitui o primeiro ou é recusado
+      Dado que o cupom "SAVE10" está aplicado
+      Quando o cliente aplica o cupom "MINUS15"
+      Então só um cupom fica aplicado no pedido
+
+  Regra: Cupons de porcentagem não podem deixar o total abaixo de zero
+
+    @regression @critical
+    Cenário: O total nunca fica abaixo de zero
+      Dado que o total do carrinho é 5,00
+      E um cupom válido "FULL" de 100% de desconto
+      Quando o cliente aplica o cupom "FULL"
+      Então o novo total mostrado é 0,00
 ```
 
 ## Rastreabilidade
 
 | Critério de aceite | Cenários |
 |---|---|
-| 1. Digitar e aplicar o cupom | Apply a valid coupon |
-| 2. Desconto e novo total antes de finalizar | Discount and new total are shown before paying, Fixed and percentage coupons |
-| 3. Cupom inválido ou expirado | Coupon that cannot be used |
-| 4. Um cupom por pedido | Second coupon replaces or is refused |
-| 5. Total nunca abaixo de zero | Total never goes below zero |
+| 1. Digitar e aplicar o cupom | Aplicar um cupom válido |
+| 2. Desconto e novo total antes de finalizar | Desconto e novo total aparecem antes de pagar, Cupons de valor fixo e de porcentagem |
+| 3. Cupom inválido ou expirado | Cupom que não pode ser usado |
+| 4. Um cupom por pedido | Segundo cupom substitui o primeiro ou é recusado |
+| 5. Total nunca abaixo de zero | O total nunca fica abaixo de zero |
 
 ## Perguntas em aberto para produto
 
