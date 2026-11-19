@@ -2,7 +2,7 @@
 
 [Versão em português](../../padroes/casos-de-teste-bdd.md)
 
-I write test cases in Gherkin so that product, developers and QA read the same thing. They live in the area doc they belong to, not in a separate tool.
+I write test cases in Gherkin so that product, developers and QA read the same thing. They live in the area doc they belong to, not in a separate tool. The Gherkin follows the language of the document, so the Portuguese docs use Portuguese Gherkin (`# language: pt`) and these English docs use English. System messages are copied exactly as the product shows them.
 
 ## Shape
 
