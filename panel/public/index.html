@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de testes</title>
+<style>
+  :root { --bg: #f6f8fa; --card: #ffffff; --text: #1f2328; --muted: #59636e; --line: #d1d9e0; --accent: #0f1b2d; --pass: #1a7f37; --fail: #cf222e; --warn: #9a6700; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--accent); color: #f4f6fa; padding: 28px 24px; }
+  header h1 { margin: 0; font-size: 26px; }
+  header p { margin: 6px 0 0; color: #c3cad6; }
+  main { max-width: 760px; margin: 24px auto; padding: 0 16px; }
+  .flow { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .flow h2 { margin: 0; font-size: 18px; }
+  .flow p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+  button { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; font-size: 15px; cursor: pointer; white-space: nowrap; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .result { margin-top: 12px; padding: 12px; border-radius: 8px; background: var(--bg); font-size: 14px; }
+  .result.passed strong { color: var(--pass); }
+  .result.failed strong, .result.error strong { color: var(--fail); }
+  .result.running strong { color: var(--warn); }
+  .result img { margin-top: 10px; max-width: 100%; border: 1px solid var(--line); border-radius: 6px; }
+  .error { margin-top: 6px; font-family: Consolas, monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Painel de testes</h1>
+  <p>Escolha um fluxo, clique em Rodar e veja o resultado, sem esperar um QA livre.</p>
+</header>
+<main id="flows"><p>Carregando fluxos…</p></main>
+<script>
+  const list = document.getElementById('flows');
+
+  function seconds(ms) {
+    return (ms / 1000).toFixed(1).replace('.', ',') + ' s';
+  }
+
+  function showResult(box, result) {
+    const labels = { passed: 'Passou', failed: 'Falhou', error: 'Não foi possível rodar' };
+    box.className = 'result ' + result.status;
+    box.innerHTML = '';
+    const title = document.createElement('strong');
+    title.textContent = labels[result.status] ?? result.status;
+    box.append(title, document.createTextNode(result.durationMs ? ' em ' + seconds(result.durationMs) : ''));
+    if (result.error) {
+      const error = document.createElement('div');
+      error.className = 'error';
+      error.textContent = result.error;
+      box.append(error);
+    }
+    if (result.screenshot) {
+      const img = document.createElement('img');
+      img.alt = 'Print do momento da falha';
+      img.src = '/screenshots?path=' + encodeURIComponent(result.screenshot);
+      box.append(img);
+    }
+  }
+
+  async function run(flow, button, box) {
+    document.querySelectorAll('button').forEach((b) => (b.disabled = true));
+    box.hidden = false;
+    box.className = 'result running';
+    box.innerHTML = '<strong>Rodando…</strong> isso leva alguns segundos.';
+    try {
+      const response = await fetch('/api/run/' + encodeURIComponent(flow.id), { method: 'POST' });
+      const body = await response.json();
+      showResult(box, response.ok ? body : { status: 'error', durationMs: 0, error: body.error });
+    } catch (error) {
+      showResult(box, { status: 'error', durationMs: 0, error: 'O painel não respondeu. Ele ainda está aberto no terminal?' });
+    } finally {
+      document.querySelectorAll('button').forEach((b) => (b.disabled = false));
+    }
+  }
+
+  fetch('/api/flows')
+    .then((response) => response.json())
+    .then((flows) => {
+      list.innerHTML = '';
+      for (const flow of flows) {
+        const card = document.createElement('section');
+        card.className = 'flow';
+        card.innerHTML = '<div class="row"><div><h2></h2><p></p></div><button type="button">Rodar</button></div><div class="result" hidden></div>';
+        card.querySelector('h2').textContent = flow.name;
+        card.querySelector('p').textContent = flow.description;
+        const button = card.querySelector('button');
+        const box = card.querySelector('.result');
+        button.addEventListener('click', () => run(flow, button, box));
+        list.append(card);
+      }
+    })
+    .catch(() => {
+      list.innerHTML = '<p>Não consegui carregar os fluxos.</p>';
+    });
+</script>
+</body>
+</html>
