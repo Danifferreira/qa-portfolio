@@ -1,0 +1,35 @@
+name: Local shop trial
+
+on:
+  push:
+    branches: [local-shop]
+
+jobs:
+  trial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Start the private copy of the shop
+        run: bash scripts/start-local-shop.sh
+
+      - name: Run every test against the private copy
+        env:
+          WEB_URL: http://localhost:4200
+          API_URL: http://localhost:8091
+        run: npx playwright test --project=unit --project=api --project=e2e
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report
+          path: playwright-report
