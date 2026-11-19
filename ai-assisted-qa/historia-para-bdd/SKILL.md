@@ -21,7 +21,7 @@ A user story with its acceptance criteria. It may also include links to the area
 
 Follow `docs/padroes/casos-de-teste-bdd.md`.
 
-- Gherkin in English.
+- Gherkin in the language of the document the cases will live in. Portuguese documents use `# language: pt`. Copy system messages exactly as the product shows them.
 - `Background` for setup shared by every scenario.
 - One `Rule` per acceptance criterion, using the criterion's own words when possible.
 - `Scenario Outline` with `Examples` when the same behavior repeats with different data.

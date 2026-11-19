@@ -23,29 +23,30 @@ Neste portfólio, a automação cobre os casos recusados. O caso positivo (o adm
 ## Casos de teste
 
 ```gherkin
-Feature: Permissions
+# language: pt
+Funcionalidade: Permissões
 
-  Rule: Only admins can list users
-
-    @smoke @critical
-    Scenario: Anonymous request
-      When a request without a token asks for the user list
-      Then it is refused as unauthenticated
+  Regra: Só admins listam usuários
 
     @smoke @critical
-    Scenario: Customer request
-      Given a logged in customer
-      When the customer asks for the user list
-      Then it is refused as forbidden
-
-  Rule: Only admins can delete products
+    Cenário: Requisição sem login
+      Quando uma requisição sem token pede a lista de usuários
+      Então ela é recusada como não autenticada
 
     @smoke @critical
-    Scenario: Customer tries to delete a product
-      Given a logged in customer and a product in the catalog
-      When the customer tries to delete the product
-      Then it is refused as forbidden
-      And the product is still in the catalog
+    Cenário: Requisição de cliente
+      Dado um cliente logado
+      Quando o cliente pede a lista de usuários
+      Então ela é recusada como proibida
+
+  Regra: Só admins apagam produtos
+
+    @smoke @critical
+    Cenário: Cliente tenta apagar um produto
+      Dado um cliente logado e um produto no catálogo
+      Quando o cliente tenta apagar o produto
+      Então a ação é recusada como proibida
+      E o produto continua no catálogo
 ```
 
 ## O que validar

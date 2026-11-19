@@ -6,7 +6,7 @@ I use AI in my daily QA work to save time on what is repetitive and keep the jud
 
 | Where | What is there |
 |---|---|
-| [Story to BDD](historia-para-bdd/) | A skill that turns a user story into BDD cases following this repository's standard, with a real example of the input, what the AI produced and what I corrected in review |
+| [Story to BDD](historia-para-bdd/README.en.md) | A skill that turns a user story into BDD cases following this repository's standard, with a real example of the input, what the AI produced and what I corrected in review |
 | [How I test AI and MCP features](testing-ai-and-mcp.en.md) | The risks I prioritize and how I test each one when the product has AI inside |
 
 ## How I use the skill

@@ -2,7 +2,7 @@
 
 [English version](2-ai-output.en.md)
 
-Esta é a saída da skill para a [história do cupom](1-historia.md), sem retoque no conteúdo. A IA gerou o Gherkin em inglês, seguindo o padrão do repositório. Aqui ele está traduzido para português, para o exemplo ficar inteiro num idioma só. O original está na versão em inglês. A minha revisão está em [3-minha-revisao.md](3-minha-revisao.md).
+Esta é a saída da skill para a [história do cupom](1-historia.md), sem retoque no conteúdo. A IA gerou o Gherkin em inglês. Aqui ele está traduzido para português, para o exemplo ficar inteiro num idioma só. O original está na versão em inglês. A minha revisão está em [3-minha-revisao.md](3-minha-revisao.md).
 
 ## Gherkin
 

@@ -17,36 +17,37 @@ O checkout tem quatro etapas, nesta ordem. Carrinho, login, endereço de cobran�
 ## Casos de teste
 
 ```gherkin
-Feature: Cart and checkout
+# language: pt
+Funcionalidade: Carrinho e checkout
 
-  Background:
-    Given a product that is in stock
+  Contexto:
+    Dado um produto em estoque
 
-  Rule: A product can be added with a quantity from 1 to 99
+  Regra: Um produto entra no carrinho com quantidade de 1 a 99
 
     @smoke @critical
-    Scenario: Add one unit to the cart
-      When a visitor adds the product to the cart
-      Then the cart counter shows 1
-      And the cart page lists the product
+    Cenário: Adicionar uma unidade ao carrinho
+      Quando um visitante adiciona o produto ao carrinho
+      Então o contador do carrinho mostra 1
+      E a página do carrinho lista o produto
 
     @regression
-    Scenario Outline: Quantities outside the range are refused
-      When the product is added with quantity <quantity>
-      Then the item is not added and the message says "<message>"
+    Esquema do Cenário: Quantidades fora do intervalo são recusadas
+      Quando o produto é adicionado com quantidade <quantidade>
+      Então o item não entra no carrinho e a mensagem diz "<mensagem>"
 
-      Examples:
-        | quantity | message                                         |
-        | 0        | The quantity field must be at least 1.          |
-        | 100      | The quantity field must not be greater than 99. |
+      Exemplos:
+        | quantidade | mensagem                                        |
+        | 0          | The quantity field must be at least 1.          |
+        | 100        | The quantity field must not be greater than 99. |
 
-  Rule: Checkout guides the customer through four steps
+  Regra: O checkout guia o cliente por quatro etapas
 
     @regression
-    Scenario: Checkout with an empty cart
-      Given a visitor with an empty cart
-      When the visitor opens the checkout
-      Then a message explains the cart is empty and links back to the shop
+    Cenário: Checkout com o carrinho vazio
+      Dado um visitante com o carrinho vazio
+      Quando o visitante abre o checkout
+      Então uma mensagem explica que o carrinho está vazio e leva de volta à loja
 ```
 
 ## O que validar

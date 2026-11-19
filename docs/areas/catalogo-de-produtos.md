@@ -19,35 +19,36 @@ Preço errado ou busca quebrada perdem venda direto. O catálogo muda com frequ�
 ## Casos de teste
 
 ```gherkin
-Feature: Product catalog
+# language: pt
+Funcionalidade: Catálogo de produtos
 
-  Rule: The catalog lists products with a name and a price
-
-    @smoke
-    Scenario: Product list loads
-      When a visitor opens the shop
-      Then products are listed, each with a name and a price
-
-  Rule: Search finds products by name
+  Regra: O catálogo lista produtos com nome e preço
 
     @smoke
-    Scenario: Search by a word from a product name
-      Given a product that exists in the catalog
-      When a visitor searches for the first word of its name
-      Then the results show only the products that match the term
-      And that product is among them
+    Cenário: A lista de produtos carrega
+      Quando um visitante abre a loja
+      Então os produtos aparecem, cada um com nome e preço
+
+  Regra: A busca encontra produtos pelo nome
+
+    @smoke
+    Cenário: Busca por uma palavra do nome do produto
+      Dado um produto que existe no catálogo
+      Quando um visitante busca a primeira palavra do nome dele
+      Então os resultados mostram só os produtos que combinam com o termo
+      E esse produto está entre eles
 
     @regression
-    Scenario: Search with no match
-      When a visitor searches for a term no product has
-      Then an empty result is shown with no error
+    Cenário: Busca sem resultado
+      Quando um visitante busca um termo que nenhum produto tem
+      Então aparece um resultado vazio, sem erro
 
-  Rule: Filters narrow the list
+  Regra: Os filtros reduzem a lista
 
     @regression
-    Scenario: Filter by category
-      When a visitor selects the category "Hand Tools"
-      Then only hand tools are listed
+    Cenário: Filtro por categoria
+      Quando um visitante seleciona a categoria "Hand Tools"
+      Então só aparecem ferramentas manuais
 ```
 
 ## O que validar

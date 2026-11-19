@@ -19,36 +19,37 @@ Uma regra de senha fraca ou uma mensagem de erro que entrega demais deixaria as 
 ## Casos de teste
 
 ```gherkin
-Feature: Customer authentication
+# language: pt
+Funcionalidade: Autenticação do cliente
 
-  Rule: A new customer can create an account and log in
+  Regra: Um cliente novo pode criar a conta e fazer login
 
     @smoke @critical
-    Scenario: Register and log in
-      Given a visitor with a valid name, email and strong password
-      When the visitor registers
-      And logs in with the same email and password
-      Then the visitor is logged in and sees their own name
+    Cenário: Cadastro e login
+      Dado um visitante com nome, e-mail e senha forte válidos
+      Quando o visitante se cadastra
+      E faz login com o mesmo e-mail e senha
+      Então o visitante está logado e vê o próprio nome
 
-  Rule: Weak passwords are refused
-
-    @regression
-    Scenario Outline: Password that breaks a rule
-      When a visitor registers with the password "<password>"
-      Then the registration is refused with a message about "<rule>"
-
-      Examples:
-        | password   | rule                  |
-        | abc        | at least 8 characters |
-        | abcdefgh1! | uppercase letter      |
-
-  Rule: Login does not reveal which field is wrong
+  Regra: Senhas fracas são recusadas
 
     @regression
-    Scenario: Wrong password
-      Given a registered customer
-      When the customer logs in with a wrong password
-      Then the login is refused with a generic message
+    Esquema do Cenário: Senha que quebra uma regra
+      Quando um visitante se cadastra com a senha "<senha>"
+      Então o cadastro é recusado com uma mensagem sobre "<regra>"
+
+      Exemplos:
+        | senha      | regra                    |
+        | abc        | pelo menos 8 caracteres  |
+        | abcdefgh1! | letra maiúscula          |
+
+  Regra: O login não revela qual campo está errado
+
+    @regression
+    Cenário: Senha errada
+      Dado um cliente cadastrado
+      Quando o cliente faz login com uma senha errada
+      Então o login é recusado com uma mensagem genérica
 ```
 
 ## O que validar
