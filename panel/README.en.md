@@ -2,7 +2,9 @@
 
 [Versão em português](README.md)
 
-![Test panel after running the product search flow](../docs/assets/painel-de-testes.jpg)
+![Test panel with two passing flows and a failing example with its screenshot](../docs/assets/painel-de-testes.jpg)
+
+*The "Exemplo de falha" flow in the image was created only for the screenshot and fails on purpose. It is not part of the flow list.*
 
 A panel where anyone on the team picks a business flow, clicks Run and sees the result right away, without knowing how to code and without waiting for a QA to be free. The panel itself is in Portuguese, the main language of this portfolio.
 

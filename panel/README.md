@@ -2,7 +2,9 @@
 
 [English version](README.en.md)
 
-![Painel de testes depois de rodar a busca de produto](../docs/assets/painel-de-testes.jpg)
+![Painel de testes com dois fluxos que passaram e um exemplo de falha com o print](../docs/assets/painel-de-testes.jpg)
+
+*No print, o fluxo "Exemplo de falha" foi criado só para a foto e falha de propósito. Ele não faz parte da lista de fluxos.*
 
 Um painel em que qualquer pessoa do time escolhe um fluxo de negócio, clica em Rodar e vê o resultado na hora, sem precisar saber programar e sem esperar um QA livre.
 

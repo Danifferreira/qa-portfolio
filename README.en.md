@@ -23,6 +23,14 @@ I took [Practice Software Testing](https://practicesoftwaretesting.com), a publi
 | [Test panel](panel/README.en.md) | A local panel where anyone on the team picks a business flow, clicks Run and sees whether it passed, without waiting for a QA to be free |
 | [Tests](tests/) | Playwright + TypeScript. API checks for auth, catalog, cart and permissions, plus a small UI smoke |
 
+## Test panel
+
+Anyone on the team picks a business flow, clicks Run and sees the result, without waiting for a QA to be free. When a flow fails, the panel shows the error message and a screenshot of the moment it failed. In the image below, two flows passed and an example flow failed on purpose to show that screen. The panel itself is in Portuguese.
+
+![Test panel with two passing flows and a failing example with its screenshot](docs/assets/painel-de-testes.jpg)
+
+[How the panel works and how to run it](panel/README.en.md)
+
 ## Daily run
 
 Every morning GitHub Actions starts a private copy of the shop in Docker, with freshly loaded demo data, and runs the whole suite against it, UI tests included. If the copy does not start, the run is reported as "Environment unavailable" instead of failing.

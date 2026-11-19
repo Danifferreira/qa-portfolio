@@ -23,6 +23,14 @@ Peguei o [Practice Software Testing](https://practicesoftwaretesting.com), uma l
 | [Painel de testes](panel/) | Um painel local em que qualquer pessoa do time escolhe um fluxo de negócio, clica em Rodar e vê se passou, sem esperar um QA livre |
 | [Testes](tests/) | Playwright + TypeScript. Testes de API de login, catálogo, carrinho e permissões, mais um smoke de tela enxuto |
 
+## Painel de testes
+
+Qualquer pessoa do time escolhe um fluxo de negócio, clica em Rodar e vê o resultado, sem esperar um QA livre. Quando um fluxo falha, o painel mostra a mensagem de erro e o print do momento da falha. No print abaixo, dois fluxos passaram e um fluxo de exemplo falhou de propósito, para mostrar essa tela.
+
+![Painel de testes com dois fluxos que passaram e um exemplo de falha com o print](docs/assets/painel-de-testes.jpg)
+
+[Como o painel funciona e como rodar](panel/)
+
 ## Execução diária
 
 Toda manhã o GitHub Actions sobe uma cópia própria da loja em Docker, com dados de demonstração recém-carregados, e roda a suíte inteira nela, testes de tela incluídos. Se a cópia não subir, a execução aparece como "Environment unavailable" em vez de falha.
