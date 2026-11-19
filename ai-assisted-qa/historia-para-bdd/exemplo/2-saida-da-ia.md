@@ -41,10 +41,10 @@ Funcionalidade: Cupom de desconto no checkout
       Então o novo total mostrado é <novo_total>
 
       Exemplos:
-        | total_do_carrinho | codigo  | valor            | novo_total |
-        | 100,00            | SAVE10  | 10% de desconto  | 90,00      |
-        | 100,00            | MINUS15 | 15,00 de desconto | 85,00     |
-        | 59,99             | SAVE10  | 10% de desconto  | 53,99      |
+        | total_do_carrinho | codigo  | valor             | novo_total |
+        | 100,00            | SAVE10  | 10% de desconto   | 90,00      |
+        | 100,00            | MINUS15 | 15,00 de desconto | 85,00      |
+        | 59,99             | SAVE10  | 10% de desconto   | 53,99      |
 
   Regra: Um cupom inválido ou expirado mostra uma mensagem de erro e não altera o total
 
