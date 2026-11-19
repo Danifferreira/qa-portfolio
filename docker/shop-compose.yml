@@ -26,11 +26,13 @@ services:
       - mariadb
 
   web:
-    image: testsmith/practice-software-testing-web:latest
+    # The shop's own web image is built for ARM only, so a standard nginx serves the API.
+    image: nginx:1.27-alpine
     ports:
       - 8091:80
     volumes:
       - api-code:/var/www
+      - ./shop-api-nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - laravel-api
 

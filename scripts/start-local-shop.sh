@@ -8,7 +8,7 @@ COMPOSE="docker compose -f docker/shop-compose.yml"
 wait_for() {
   local url="$1" label="$2" tries="$3"
   for attempt in $(seq 1 "$tries"); do
-    code=$(curl -s -o /dev/null -w "%{http_code}" -m 10 "$url" || echo 000)
+    code=$(curl -s -o /dev/null -w "%{http_code}" -m 10 "$url" || true)
     if [ "$code" = "200" ]; then
       echo "$label ready (HTTP 200, attempt $attempt)"
       return 0
