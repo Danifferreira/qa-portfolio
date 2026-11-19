@@ -1,5 +1,7 @@
 # Portfólio de QA — Danielle Ferreira
 
+![Portfólio de QA de Danielle Ferreira](docs/assets/portfolio-cover.png)
+
 [English version](README.en.md)
 
 Sou QA Sênior, com mais de 6 anos em qualidade de software. O que mais gosto é de organizar a qualidade de um produto e deixar um processo que o time consegue seguir sem depender de mim. [LinkedIn](https://www.linkedin.com/in/danielle-ferreira-qa)
@@ -17,6 +19,7 @@ Peguei o [Practice Software Testing](https://practicesoftwaretesting.com), uma l
 | [Áreas](docs/areas/) | Um documento por área do produto, com regras, riscos, casos BDD e a tabela "O que validar" ligada aos testes |
 | [Relatório de release](docs/releases/relatorio-de-release-exemplo.md) | Um relatório de go/no-go no formato que eu uso |
 | [Bugs](docs/bugs/) | Defeitos reais que encontrei explorando a loja |
+| [QA com apoio de IA](ai-assisted-qa/) | Uma skill que transforma história de usuário em casos BDD, com o que a IA gerou e o que eu corrigi, e um guia de como testo funcionalidades com IA e MCP |
 | [Testes](tests/) | Playwright + TypeScript. Testes de API de login, catálogo, carrinho e permissões, mais um smoke de tela enxuto |
 
 ## Execução diária
@@ -41,7 +44,7 @@ Os testes que precisam de uma conta cadastram um cliente novo a cada execução.
 
 ## Próximos passos
 
-Uma seção de QA com apoio de IA, com uma skill que transforma uma história de usuário em casos BDD e um guia de como testar funcionalidades com IA e MCP. Depois, um painel em que qualquer pessoa do time roda um fluxo de negócio sob demanda e vê o resultado, sem esperar um QA livre.
+Um painel em que qualquer pessoa do time roda um fluxo de negócio sob demanda e vê o resultado, sem esperar um QA livre.
 
 ---
 

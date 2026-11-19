@@ -1,7 +1,8 @@
 # QA Portfolio — Danielle Ferreira
 
-[Versão em português](README.md)
+![Danielle Ferreira's QA portfolio](docs/assets/portfolio-cover.png)
 
+[Versão em português](README.md)
 
 I am a Senior QA Engineer with more than 6 years in software quality. What I enjoy most is organizing quality for a product and leaving a process the team can follow without depending on me. [LinkedIn](https://www.linkedin.com/in/danielle-ferreira-qa)
 
@@ -18,6 +19,7 @@ I took [Practice Software Testing](https://practicesoftwaretesting.com), a publi
 | [Areas](docs/en/areas/) | One doc per product area with rules, risks, BDD cases and a What to validate table linked to the tests |
 | [Release report](docs/en/releases/release-report-example.md) | A go/no-go report in the format I use |
 | [Bugs](docs/en/bugs/) | Real defects I found while exploring the shop |
+| [AI-assisted QA](ai-assisted-qa/README.en.md) | A skill that turns a user story into BDD cases, with what the AI produced and what I corrected, and a guide on how I test AI and MCP features |
 | [Tests](tests/) | Playwright + TypeScript. API checks for auth, catalog, cart and permissions, plus a small UI smoke |
 
 ## Daily run
@@ -42,7 +44,7 @@ Tests that need an account register a new customer on every run. Tests that need
 
 ## Coming next
 
-An AI-assisted QA section, with a skill that turns a user story into BDD cases and a guide on testing AI and MCP features. After that, a test panel where anyone on the team can run a business flow on demand and see the result, without waiting for a QA to be free.
+A test panel where anyone on the team can run a business flow on demand and see the result, without waiting for a QA to be free.
 
 ---
 
