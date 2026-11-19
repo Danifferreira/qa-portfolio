@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cadastro-e-login",
+    "name": "Cadastro e login de cliente",
+    "description": "Cria um cliente novo pela API e confirma que ele consegue entrar na conta.",
+    "file": "tests/api/users.spec.ts",
+    "project": "api",
+    "title": "@smoke customer can register and log in"
+  },
+  {
+    "id": "login-pela-tela",
+    "name": "Login pela tela",
+    "description": "Um cliente entra na conta pelo site e vê o próprio nome no menu.",
+    "file": "tests/e2e/auth.spec.ts",
+    "project": "e2e",
+    "title": "@smoke customer logs in through the UI"
+  },
+  {
+    "id": "busca-de-produto",
+    "name": "Busca de produto",
+    "description": "Busca um produto do catálogo e confirma que a lista mostra só o que combina com o termo.",
+    "file": "tests/e2e/shopping.spec.ts",
+    "project": "e2e",
+    "title": "@smoke search finds a product from the catalog"
+  },
+  {
+    "id": "adicionar-ao-carrinho",
+    "name": "Adicionar ao carrinho",
+    "description": "Abre um produto, adiciona ao carrinho e confere que ele aparece no carrinho.",
+    "file": "tests/e2e/shopping.spec.ts",
+    "project": "e2e",
+    "title": "@smoke visitor adds a product to the cart"
+  },
+  {
+    "id": "cliente-tenta-listar-usuarios",
+    "name": "Cliente tenta acessar a área de admin",
+    "description": "Um cliente comum pede a lista de usuários e precisa ser recusado.",
+    "file": "tests/api/permissions.spec.ts",
+    "project": "api",
+    "title": "customer cannot list users"
+  },
+  {
+    "id": "cliente-tenta-apagar-produto",
+    "name": "Cliente tenta apagar um produto",
+    "description": "Um cliente comum tenta apagar um produto, é recusado, e o produto continua no catálogo.",
+    "file": "tests/api/permissions.spec.ts",
+    "project": "api",
+    "title": "customer cannot delete a product"
+  }
+]

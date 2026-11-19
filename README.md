@@ -20,6 +20,7 @@ Peguei o [Practice Software Testing](https://practicesoftwaretesting.com), uma l
 | [Relatório de release](docs/releases/relatorio-de-release-exemplo.md) | Um relatório de go/no-go no formato que eu uso |
 | [Bugs](docs/bugs/) | Defeitos reais que encontrei explorando a loja |
 | [QA com apoio de IA](ai-assisted-qa/) | Uma skill que transforma história de usuário em casos BDD, com o que a IA gerou e o que eu corrigi, e um guia de como testo funcionalidades com IA e MCP |
+| [Painel de testes](panel/) | Um painel local em que qualquer pessoa do time escolhe um fluxo de negócio, clica em Rodar e vê se passou, sem esperar um QA livre |
 | [Testes](tests/) | Playwright + TypeScript. Testes de API de login, catálogo, carrinho e permissões, mais um smoke de tela enxuto |
 
 ## Execução diária
@@ -44,7 +45,7 @@ Os testes que precisam de uma conta cadastram um cliente novo a cada execução.
 
 ## Próximos passos
 
-Um painel em que qualquer pessoa do time roda um fluxo de negócio sob demanda e vê o resultado, sem esperar um QA livre.
+Uma cópia própria da loja rodando em Docker dentro do CI, para que os testes de tela também entrem na execução diária sem depender de um site público.
 
 ---
 

@@ -1,4 +1,4 @@
-const NO_RESULTS = { status: 'error', durationMs: 0, error: 'No results returned by the test run' };
+const NO_RESULTS = { status: 'error', durationMs: 0, error: 'O teste não devolveu resultado. Confira se o fluxo ainda existe.' };
 
 function stripColors(text) {
   return text.replace(/\u001b\[[0-9;]*m/g, '');

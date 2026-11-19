@@ -20,6 +20,7 @@ I took [Practice Software Testing](https://practicesoftwaretesting.com), a publi
 | [Release report](docs/en/releases/release-report-example.md) | A go/no-go report in the format I use |
 | [Bugs](docs/en/bugs/) | Real defects I found while exploring the shop |
 | [AI-assisted QA](ai-assisted-qa/README.en.md) | A skill that turns a user story into BDD cases, with what the AI produced and what I corrected, and a guide on how I test AI and MCP features |
+| [Test panel](panel/README.en.md) | A local panel where anyone on the team picks a business flow, clicks Run and sees whether it passed, without waiting for a QA to be free |
 | [Tests](tests/) | Playwright + TypeScript. API checks for auth, catalog, cart and permissions, plus a small UI smoke |
 
 ## Daily run
@@ -44,7 +45,7 @@ Tests that need an account register a new customer on every run. Tests that need
 
 ## Coming next
 
-A test panel where anyone on the team can run a business flow on demand and see the result, without waiting for a QA to be free.
+An own copy of the shop running in Docker inside CI, so the UI tests can join the daily run without depending on a public site.
 
 ---
 

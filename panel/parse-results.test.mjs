@@ -34,6 +34,6 @@ test('nested suites are read too', () => {
 });
 
 test('missing or empty output reports an error', () => {
-  assert.deepEqual(parseResults(null), { status: 'error', durationMs: 0, error: 'No results returned by the test run' });
-  assert.deepEqual(parseResults({ suites: [] }), { status: 'error', durationMs: 0, error: 'No results returned by the test run' });
+  assert.deepEqual(parseResults(null), { status: 'error', durationMs: 0, error: 'O teste não devolveu resultado. Confira se o fluxo ainda existe.' });
+  assert.deepEqual(parseResults({ suites: [] }), { status: 'error', durationMs: 0, error: 'O teste não devolveu resultado. Confira se o fluxo ainda existe.' });
 });
