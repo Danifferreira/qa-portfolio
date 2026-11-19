@@ -1,1 +1,6 @@
 * text=auto eol=lf
+
+# The repo's language badge should reflect the test suite (TypeScript),
+# not the small panel and status-page helpers written in plain JavaScript.
+panel/** linguist-detectable=false
+scripts/** linguist-detectable=false
