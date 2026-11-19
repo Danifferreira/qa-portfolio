@@ -31,37 +31,30 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
-      - name: Check the status page builder and types
+      - name: Check the status page builder, the panel and types
         run: |
           npm run -s site:test
+          npm run -s panel:test
           npx tsc --noEmit
 
-      - name: Check that the demo site is up
+      - name: Start the private copy of the shop
         id: health
         run: |
-          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
-          check() {
-            for attempt in 1 2 3; do
-              code=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A "$UA" -H "Accept: $2" "$1" || echo 000)
-              echo "$1 -> HTTP $code (attempt $attempt)"
-              [ "$code" = "200" ] && return 0
-              sleep 10
-            done
-            return 1
-          }
-          if check "https://api.practicesoftwaretesting.com/products?page=1" "application/json" \
-            && check "https://practicesoftwaretesting.com/" "text/html"; then
+          if bash scripts/start-local-shop.sh; then
             echo "up=true" >> "$GITHUB_OUTPUT"
           else
             echo "up=false" >> "$GITHUB_OUTPUT"
-            echo "### Environment unavailable. The demo site did not respond, so the suite did not run." >> "$GITHUB_STEP_SUMMARY"
+            echo "### Environment unavailable. The private copy of the shop did not start, so the suite did not run." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Run the suite
         id: tests
         if: steps.health.outputs.up == 'true'
         continue-on-error: true
-        run: npx playwright test --project=unit --project=api
+        env:
+          WEB_URL: http://localhost:4200
+          API_URL: http://localhost:8091
+        run: npx playwright test
 
       - name: Build the status page
         if: always()

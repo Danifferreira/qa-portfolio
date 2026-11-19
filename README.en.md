@@ -25,9 +25,9 @@ I took [Practice Software Testing](https://practicesoftwaretesting.com), a publi
 
 ## Daily run
 
-The API tests run every morning on GitHub Actions. Before they start, a health check confirms the demo site is up. If it is not, the run is reported as "Environment unavailable" instead of failing.
+Every morning GitHub Actions starts a private copy of the shop in Docker, with freshly loaded demo data, and runs the whole suite against it, UI tests included. If the copy does not start, the run is reported as "Environment unavailable" instead of failing.
 
-The UI tests run locally. The demo shop protects some pages with Cloudflare's bot check when traffic comes from servers like GitHub's, and I do not work around that kind of protection. The next step is for the workflow to start its own copy of the shop and test everything there.
+Before this, only the API tests ran on GitHub, because the public shop shows Cloudflare's bot check to traffic from servers, and I do not work around that kind of protection. With a private copy, the run no longer depends on the public site. The copy uses the shop's official images at a fixed version and exists only while the run lasts, never exposed.
 
 **[See today's status and full report](https://danifferreira.github.io/qa-portfolio/)**
 
@@ -43,9 +43,7 @@ npm test
 
 Tests that need an account register a new customer on every run. Tests that need a product pick one from the live catalog at run time, never by a fixed name or price.
 
-## Coming next
-
-An own copy of the shop running in Docker inside CI, so the UI tests can join the daily run without depending on a public site.
+By default the tests use the public shop. With Docker installed you can run them against the private copy, like CI does, with `bash scripts/start-local-shop.sh` and then `WEB_URL=http://localhost:4200 API_URL=http://localhost:8091 npm test`.
 
 ---
 

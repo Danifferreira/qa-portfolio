@@ -25,9 +25,9 @@ Peguei o [Practice Software Testing](https://practicesoftwaretesting.com), uma l
 
 ## Execução diária
 
-Os testes de API rodam toda manhã no GitHub Actions. Antes de começar, uma checagem confirma se o site de demonstração está no ar. Se não estiver, a execução aparece como "Environment unavailable" em vez de falha.
+Toda manhã o GitHub Actions sobe uma cópia própria da loja em Docker, com dados de demonstração recém-carregados, e roda a suíte inteira nela, testes de tela incluídos. Se a cópia não subir, a execução aparece como "Environment unavailable" em vez de falha.
 
-Os testes de tela rodam localmente. A loja de demonstração protege algumas páginas com a verificação anti-robô do Cloudflare quando o acesso vem de servidores como os do GitHub, e eu não contorno esse tipo de proteção. O próximo passo é a rotina subir uma cópia própria da loja e testar tudo nela.
+Antes eu rodava só a API no GitHub, porque a loja pública mostra a verificação anti-robô do Cloudflare quando o acesso vem de servidores, e eu não contorno esse tipo de proteção. Com a cópia própria, a rotina não depende mais do site público. A cópia usa as imagens oficiais da loja, numa versão fixa, e existe só durante a execução, sem ficar exposta.
 
 **[Ver o status de hoje e o relatório completo](https://danifferreira.github.io/qa-portfolio/)**
 
@@ -43,9 +43,7 @@ npm test
 
 Os testes que precisam de uma conta cadastram um cliente novo a cada execução. Os que precisam de um produto escolhem um do catálogo real na hora, nunca por nome ou preço fixo.
 
-## Próximos passos
-
-Uma cópia própria da loja rodando em Docker dentro do CI, para que os testes de tela também entrem na execução diária sem depender de um site público.
+Por padrão os testes usam a loja pública. Quem tem Docker pode rodar contra a cópia própria, como no CI, com `bash scripts/start-local-shop.sh` e depois `WEB_URL=http://localhost:4200 API_URL=http://localhost:8091 npm test`.
 
 ---
 

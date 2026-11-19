@@ -17,12 +17,12 @@ function pt(text) {
 
 function summary(status, stats) {
   if (status === 'down') {
-    return `<p class="down">Environment unavailable. The demo site did not respond, so the suite did not run today.</p>
-${pt('Ambiente indisponível. O site de demonstração não respondeu, então a suíte não rodou hoje.')}`;
+    return `<p class="down">Environment unavailable. The private copy of the shop did not start, so the suite did not run today.</p>
+${pt('Ambiente indisponível. A cópia própria da loja não subiu, então a suíte não rodou hoje.')}`;
   }
   if (status === 'incomplete') {
-    return `<p class="warn">Run did not complete because of a problem in the pipeline itself, not in the demo site. See the run in GitHub Actions.</p>
-${pt('A execução não terminou por um problema na própria rotina, e não no site de demonstração. Veja a execução no GitHub Actions.')}`;
+    return `<p class="warn">Run did not complete because of a problem in the pipeline itself, not in the shop. See the run in GitHub Actions.</p>
+${pt('A execução não terminou por um problema na própria rotina, e não na loja. Veja a execução no GitHub Actions.')}`;
   }
   if (!stats) {
     return `<p class="warn">No results found for this run.</p>

@@ -33,9 +33,9 @@ Uma suíte pequena em que eu confio vale mais que uma grande que o time aprende 
 
 ## Ambientes
 
-Os testes rodam contra a demonstração pública. Antes de cada execução diária, uma checagem confirma se o site está no ar. Se não estiver, a execução aparece como "Environment unavailable" em vez de falha, porque ambiente fora do ar não é produto quebrado.
+Na máquina, os testes rodam contra a demonstração pública por padrão. Na execução diária, o GitHub sobe uma cópia própria da loja em Docker, carrega os dados de demonstração do zero e roda a suíte inteira nela. Se a cópia não subir, a execução aparece como "Environment unavailable" em vez de falha, porque ambiente fora do ar não é produto quebrado.
 
-A execução diária no GitHub roda os testes de API. Os testes de tela rodam localmente, porque a loja protege algumas páginas com a verificação anti-robô do Cloudflare quando o acesso vem de servidores, e contornar essa proteção não é uma opção. O próximo passo é a rotina subir uma cópia própria da loja e rodar tudo nela.
+A cópia própria resolveu dois problemas. A loja pública mostra a verificação anti-robô do Cloudflare quando o acesso vem de servidores, e contornar essa proteção não é uma opção, então os testes de tela ficavam fora do CI. E um ambiente compartilhado muda sem aviso, enquanto a cópia usa uma versão fixa e dados limpos a cada execução.
 
 ## Critérios de entrada e saída
 
